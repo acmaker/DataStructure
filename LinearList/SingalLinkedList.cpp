@@ -1,7 +1,7 @@
 /*** 
  * @Author      : acmaker
  * @Date        : 2020-03-10 11:33:03
- * @LastEditTime: 2020-03-16 11:18:57
+ * @LastEditTime: 2020-03-17 19:26:32
  * @FilePath    : \myCPlusPlusCode\DataStructure\LinearList\SingalLinkedList.cpp
  * @Website     : http://csdn.acmaker.vip
  * @Description : 
@@ -38,6 +38,7 @@ Node* Locate ( LinkedList L, ElemType key );
 int InsList ( LinkedList L, int pos, ElemType e );
 int DelList ( LinkedList L, int pos, ElemType *e );
 void DestroyList ( LinkedList L );
+void reverseList ( LinkedList );
 
 
 int main ( ) {  // freopen( "F:\\in\\.txt" , "r" , stdin ); 
@@ -205,7 +206,7 @@ int DelList ( LinkedList L, int pos, ElemType *e ) {
 }
 
 /*** 
- * @description: 
+ * @description: 销毁单链表
  * @param : 
  * @return: 
  */
@@ -215,5 +216,20 @@ void DestroyList ( LinkedList L ) {
         t = p->next;
         free(p);
         p = t;
+    }
+}
+
+/*** 
+ * @description: 逆置单链表( 使用头插法 )
+ * @param : 
+ * @return: 
+ */
+void reverseList( LinkedList L ) {
+    Node *p = L->next, *q;
+    L->next = NULL;
+    for ( ; p!=NULL; p=q ) {
+        q = p->next;
+        p->next = L->next;
+        L->next = p;
     }
 }
